@@ -6,7 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "produto")
+@Table(name = "\"Produto\"")
 public class Produto {
     @Id
     @Column(name = "id_produto", nullable = false)
@@ -15,7 +15,10 @@ public class Produto {
     @Column(name = "tipo_produto", length = 100)
     private String tipoProduto;
 
-    @ManyToMany(mappedBy = "produtos")
+    @ManyToMany
+    @JoinTable(name = "Produto/Terreno",
+            joinColumns = @JoinColumn(name = "id_produto"),
+            inverseJoinColumns = @JoinColumn(name = "id_terreno"))
     private Set<Terreno> terrenos = new LinkedHashSet<>();
 
     public Integer getId() {

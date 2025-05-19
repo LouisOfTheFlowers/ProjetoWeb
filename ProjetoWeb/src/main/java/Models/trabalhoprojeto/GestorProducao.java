@@ -9,7 +9,8 @@ import java.util.Set;
 @Table(name = "\"Gestor_Producao\"")
 public class GestorProducao {
     @Id
-    @Column(name = "id_gestor", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // OU AUTO, dependendo do banco
+    @Column(name = "id_gestor")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -29,13 +30,13 @@ public class GestorProducao {
     private String codigoPostal;
 
     @OneToMany(mappedBy = "idGestor")
-    private Set<AnaliseSolo> analiseSolos = new LinkedHashSet<>();
+    private Set<AnaliseSolo> analisesSolo = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "idGestor")
     private Set<Cronograma> cronogramas = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "idGestor")
-    private Set<PropostaPlantio> propostaPlantios = new LinkedHashSet<>();
+    private Set<PropostaPlantio> propostasPlantio = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -85,12 +86,12 @@ public class GestorProducao {
         this.codigoPostal = codigoPostal;
     }
 
-    public Set<AnaliseSolo> getAnaliseSolos() {
-        return analiseSolos;
+    public Set<AnaliseSolo> getAnalisesSolo() {
+        return analisesSolo;
     }
 
-    public void setAnaliseSolos(Set<AnaliseSolo> analiseSolos) {
-        this.analiseSolos = analiseSolos;
+    public void setAnalisesSolo(Set<AnaliseSolo> analisesSolo) {
+        this.analisesSolo = analisesSolo;
     }
 
     public Set<Cronograma> getCronogramas() {
@@ -101,12 +102,17 @@ public class GestorProducao {
         this.cronogramas = cronogramas;
     }
 
-    public Set<PropostaPlantio> getPropostaPlantios() {
-        return propostaPlantios;
+    public Set<PropostaPlantio> getPropostasPlantio() {
+        return propostasPlantio;
     }
 
-    public void setPropostaPlantios(Set<PropostaPlantio> propostaPlantios) {
-        this.propostaPlantios = propostaPlantios;
+    public void setPropostasPlantio(Set<PropostaPlantio> propostasPlantio) {
+        this.propostasPlantio = propostasPlantio;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
     }
 
 }

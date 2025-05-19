@@ -1,19 +1,15 @@
 package Models.trabalhoprojeto;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "\"Cronograma/Terreno\"")
 public class CronogramaTerreno {
-    @SequenceGenerator(name = "Cronograma/Terreno_id_gen", sequenceName = "Cronograma_id_cronograma_seq", allocationSize = 1)
     @EmbeddedId
     private CronogramaTerrenoId id;
 
     @MapsId("idCronograma")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_cronograma", nullable = false)
     private Cronograma idCronograma;
 

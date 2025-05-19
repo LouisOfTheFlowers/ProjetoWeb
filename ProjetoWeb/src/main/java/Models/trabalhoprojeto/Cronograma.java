@@ -32,7 +32,7 @@ public class Cronograma {
     private GestorProducao idGestor;
 
     @ManyToMany
-    @JoinTable(name = "Cronograma/Terreno",
+    @JoinTable(name = "cronograma_terreno", // Corrigido aqui
             joinColumns = @JoinColumn(name = "id_cronograma"),
             inverseJoinColumns = @JoinColumn(name = "id_terreno"))
     private Set<Terreno> terrenos = new LinkedHashSet<>();
@@ -92,5 +92,4 @@ public class Cronograma {
     public void setTerrenos(Set<Terreno> terrenos) {
         this.terrenos = terrenos;
     }
-
 }

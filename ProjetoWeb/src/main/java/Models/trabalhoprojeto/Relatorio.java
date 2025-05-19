@@ -8,8 +8,7 @@ import java.time.LocalDate;
 @Table(name = "\"Relatorio\"")
 public class Relatorio {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Relatorio_id_gen")
-    @SequenceGenerator(name = "Relatorio_id_gen", sequenceName = "relatorio_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // <--- ESTA LINHA!
     @Column(name = "id_relatorio", nullable = false)
     private Integer id;
 
@@ -31,7 +30,6 @@ public class Relatorio {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_analista", nullable = false)
     private AnalistaDado idAnalista;
-
     public Integer getId() {
         return id;
     }
