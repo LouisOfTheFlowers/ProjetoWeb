@@ -1,10 +1,12 @@
 package Services;
 
 import Models.trabalhoprojeto.*;
+import Repositorio.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,74 +17,21 @@ public class UserService {
     @PersistenceContext
     private EntityManager em;
 
-    @Transactional
-    public boolean registarAgricultor(User user, Trabalhador trabalhador, Agricultor agricultor, Email email, Telefone telefone) {
-        try {
-            em.persist(trabalhador);
-            agricultor.setIdTrabalhador(trabalhador);
-            agricultor.setCodigoPostal(trabalhador.getCodigoPostal().getCodigoPostal());
-            em.persist(agricultor);
+    @Autowired
+    private UserRepository userRepository;
 
-            user.setTrabalhador(trabalhador);
-            em.persist(user);
-            email.setIdTrabalhador(trabalhador);
-            email.setEndereço(user.getEmail());
-            em.persist(email);
-
-
-            telefone.setIdTrabalhador(trabalhador);
-            em.persist(telefone);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
+    public boolean registarNovoUtilizador(String username, String password, String email) {
+        if (userRepository.existsByUsername(username)) {
             return false;
         }
-    }
 
-    @Transactional
-    public boolean registarGestor(User user, Trabalhador trabalhador, GestorProducao gestor, Email email, Telefone telefone) {
-        try {
-            em.persist(trabalhador);
-            gestor.setIdTrabalhador(trabalhador);
-            gestor.setCodigoPostal(trabalhador.getCodigoPostal().getCodigoPostal());
-            em.persist(gestor);
+        User novo = new User();
+        novo.setUsername(username);
+        novo.setPassword(password);
+        novo.setEmail(email);
 
-            user.setTrabalhador(trabalhador);
-            em.persist(user);
-            email.setIdTrabalhador(trabalhador);
-            email.setEndereço(user.getEmail());
-            em.persist(email);
-
-            telefone.setIdTrabalhador(trabalhador);
-            em.persist(telefone);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    @Transactional
-    public boolean registarAnalista(User user, Trabalhador trabalhador, AnalistaDado analista, Email email, Telefone telefone) {
-        try {
-            em.persist(trabalhador);
-            analista.setIdTrabalhador(trabalhador);
-            analista.setCodigoPostal(trabalhador.getCodigoPostal().getCodigoPostal());
-            em.persist(analista);
-
-            user.setTrabalhador(trabalhador);
-            em.persist(user);
-            email.setIdTrabalhador(trabalhador);
-            email.setEndereço(user.getEmail());
-            em.persist(email);
-
-            telefone.setIdTrabalhador(trabalhador);
-            em.persist(telefone);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+        userRepository.save(novo);
+        return true;
     }
 
     public User findByUsername(String username) {
@@ -94,6 +43,7 @@ public class UserService {
             return null;
         }
     }
+
     @Transactional
     public String autenticarComRole(String username, String password) {
         User user = findByUsername(username);
@@ -112,13 +62,4 @@ public class UserService {
     public List<Agricultor> findAllAgricultores() {
         return em.createQuery("SELECT a FROM Agricultor a").getResultList();
     }
-
-    @SuppressWarnings("unchecked")
-    public List<GestorProducao> findAllGestores() {
-        return em.createQuery("SELECT g FROM GestorProducao g").getResultList();
-    }
-    public List<AnalistaDado> findAllAnalistas() {
-        return em.createQuery("SELECT a FROM AnalistaDado a").getResultList();
-    }
-
 }

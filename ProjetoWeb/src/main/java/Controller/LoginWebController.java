@@ -53,11 +53,6 @@ public class LoginWebController {
         return "login";
     }
 
-    // Redireciona para a página de registo
-    @GetMapping("/registar")
-    public String redirecionarParaRegisto() {
-        return "redirect:/registo/selecionar-tipo";
-    }
 
     // Redireciona para a página de recuperação de password
     @GetMapping("/esqueceu-password")
