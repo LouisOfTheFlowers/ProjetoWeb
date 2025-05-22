@@ -3,7 +3,7 @@ package Models.trabalhoprojeto;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "amostra_solo")
+@Table(name = "\"Amostra_Solo\"")
 public class AmostraSolo {
     @Id
     @Column(name = "id_amostra", nullable = false)

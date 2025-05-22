@@ -11,7 +11,6 @@ import java.util.Optional;
 import Models.trabalhoprojeto.Trabalhador;
 
 @Service
-@ComponentScan(basePackages = {"Models.trabalhoprojet", "Repositorio"})
 public class AgricultorService {
 
     @Autowired

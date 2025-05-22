@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login - Sistema</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f8f0;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            align-items: stretch;
+        }
+
+        .left-image {
+            flex: 1;
+            background-image: url('/images/login_image.png');
+
+
+            background-size: cover;
+            background-position: center;
+        }
+
+
+        .login-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .login-form h1 {
+            font-size: 28px;
+            color: #2e8b57;
+            font-weight: bold;
+        }
+
+        .login-form p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .login-form input {
+            width: 300px;
+            height: 40px;
+            font-size: 14px;
+            margin: 10px 0;
+            padding-left: 10px;
+        }
+
+        .login-form button {
+            width: 300px;
+            height: 45px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px auto; /* <-- esta linha centraliza horizontalmente */
+            display: block;
+        }
+        .login-form button:hover {
+            background-color: #45a049;
+        }
+
+        .login-form .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .login-form .links a {
+            color: #2b1bdb;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="left-image"></div>
+
+    <div class="login-form">
+        <h1>🌿 Bem-vindo ao Sistema Agricultor!</h1>
+        <p>Entre com as suas credenciais para continuar.</p>
+
+        <form th:action="@{/login}" method="post">
+            <input type="text" name="username" placeholder="👤 Username" required />
+            <input type="password" name="password" placeholder="🔒 Password" required />
+            <button type="submit" >Login</button>
+        </form>
+
+        <div class="error" th:if="${erro != null}" th:text="${erro}"></div>
+
+        <div class="links">
+            <a th:href="@{/esqueceu-password}">Esqueceu-se da palavra-passe?</a>
+            <a th:href="@{/registar}">Ainda não tem conta? Registe-se</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

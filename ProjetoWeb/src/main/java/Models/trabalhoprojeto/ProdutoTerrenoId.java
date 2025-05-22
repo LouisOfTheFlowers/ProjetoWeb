@@ -4,25 +4,16 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import org.hibernate.Hibernate;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class ProdutoTerrenoId implements Serializable {
-    private static final long serialVersionUID = 717113349547958046L;
-    @Column(name = "id_produto", nullable = false)
-    private Integer idProduto;
-
+public class ProdutoTerrenoId implements java.io.Serializable {
+    private static final long serialVersionUID = 4094324032051462290L;
     @Column(name = "id_terreno", nullable = false)
     private Integer idTerreno;
 
-    public Integer getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(Integer idProduto) {
-        this.idProduto = idProduto;
-    }
+    @Column(name = "id_produto", nullable = false)
+    private Integer idProduto;
 
     public Integer getIdTerreno() {
         return idTerreno;
@@ -30,6 +21,14 @@ public class ProdutoTerrenoId implements Serializable {
 
     public void setIdTerreno(Integer idTerreno) {
         this.idTerreno = idTerreno;
+    }
+
+    public Integer getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(Integer idProduto) {
+        this.idProduto = idProduto;
     }
 
     @Override

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Registar-se</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f8f0;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+      align-items: stretch;
+    }
+
+    .left-image {
+      flex: 1;
+      background-image: url('/images/login_image.png');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .form-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: bold;
+      color: #2e8b57;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      max-width: 350px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .links {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .links a {
+      display: block;
+      text-decoration: none;
+      color: #2b1bdb;
+      margin: 5px 0;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="left-image"></div>
+  <div class="form-content">
+    <h1>🌱 Criar nova conta</h1>
+    <p>Preencha os dados para se registar no sistema.</p>
+
+    <form th:action="@{/registar}" method="post">
+      <!-- Conta -->
+      <input type="text" name="username" placeholder="👤 Username" required />
+      <input type="password" name="password" placeholder="🔒 Palavra-passe" required />
+      <input type="email" name="email" placeholder="📧 Email" required />
+
+      <!-- Dados Pessoais -->
+      <input type="text" name="nome" placeholder="🧑 Nome completo" required />
+      <input type="text" name="rua" placeholder="🏠 Rua" required />
+      <input type="number" name="numeroPorta" placeholder="🔢 Número da Porta" required />
+      <input type="text" name="codigoPostal" placeholder="📮 Código Postal" required />
+      <input type="text" name="telefone" placeholder="📞 Telefone" required />
+
+      <button type="submit">Criar Conta</button>
+    </form>
+
+    <div class="error" th:if="${erro != null}" th:text="${erro}"></div>
+
+    <div class="links">
+      <a th:href="@{/login}">Já tem conta? Faça login</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
