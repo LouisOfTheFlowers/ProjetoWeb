@@ -20,7 +20,6 @@ public class LoginWebController {
         return "login";
     }
 
-    // Processa o formulário de login
     @PostMapping("/login")
     public String processarLogin(@RequestParam String username,
                                  @RequestParam String password,
@@ -34,22 +33,14 @@ public class LoginWebController {
 
         String role = userService.autenticarComRole(username.trim(), password);
 
-        if (role != null) {
+        if ("agricultor".equalsIgnoreCase(role)) {
             session.setAttribute("utilizador", username);
             session.setAttribute("role", role);
-
-            return switch (role.toLowerCase()) {
-                case "agricultor" -> "redirect:/home/agricultor";
-                case "gestor"     -> "redirect:/home/gestor";
-                case "analista"   -> "redirect:/home/analista";
-                default           -> {
-                    model.addAttribute("erro", "Tipo de utilizador desconhecido.");
-                    yield "login";
-                }
-            };
+            return "redirect:/agricultor/home";
         }
 
-        model.addAttribute("erro", "Credenciais inválidas.");
+        // Se não for agricultor ou se for inválido
+        model.addAttribute("erro", "Acesso permitido apenas a Agricultores.");
         return "login";
     }
 
