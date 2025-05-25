@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Agricultor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            background-color: #f0f8f0;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            padding-top: 40px;
+            text-align: center;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn-custom {
+            font-size: 16px;
+            font-weight: bold;
+            padding: 15px 30px;
+            border-radius: 10px;
+            width: 240px;
+        }
+        .logout {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        footer {
+            font-size: 14px;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<a href="/logout" class="btn btn-outline-success logout">
+    <img src="/images/back.png" height="20" width="20" alt=""> Logout
+</a>
+
+<div class="header">
+    <h1 class="text-success"><i class="fas fa-tractor"></i> Bem-vindo, Agricultor</h1>
+    <p class="text-muted mt-2">Aceda às funcionalidades principais para gerir os seus terrenos, propostas e cronogramas de plantio.</p>
+</div>
+
+<div class="main-content">
+    <div class="card shadow-sm p-4">
+        <h5 class="card-title text-center mb-4">Ações disponíveis</h5>
+        <div class="row justify-content-center">
+            <div class="col-md-4 d-flex justify-content-center mb-4">
+                <a href="/agricultor/cronogramas" class="btn btn-success btn-custom">
+                    <i class="fas fa-calendar-alt"></i> Cronogramas
+                </a>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center mb-4">
+                <a href="/agricultor/propostas" class="btn btn-primary btn-custom">
+                    <i class="fas fa-seedling"></i> Propostas de Plantio
+                </a>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center">
+                <a href="/agricultor/terrenos" class="btn btn-warning btn-custom text-white">
+                    <i class="fas fa-map-marked-alt"></i> Terrenos
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="text-muted">
+    &copy; 2025 Sistema de Gestão de Produção de Produtos Hortícolas. Todos os direitos reservados.
+</footer>
+
+</body>
+</html>
