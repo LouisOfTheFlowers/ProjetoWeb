@@ -8,26 +8,26 @@ public class HomePageController {
 
     @GetMapping("/agricultor/home")
     public String homeAgricultor() {
-        return "home_page"; // corresponde ao ficheiro home-agricultor.html em /templates
+        return "home_page";
     }
 
-    @GetMapping("/agricultor/cronogramas")
+    @GetMapping("/agricultor/cronograma")
     public String verCronogramas() {
-        return "cronogramas"; // criar cronogramas.html em /templates
+        return "cronograma";
     }
 
     @GetMapping("/agricultor/propostas")
     public String verPropostas() {
-        return "propostas-plantio"; // criar propostas-plantio.html
+        return "propostas-plantio";
     }
 
     @GetMapping("/agricultor/terrenos")
     public String verTerrenos() {
-        return "terrenos"; // criar terrenos.html
+        return "terrenos";
     }
 
     @GetMapping("/logout")
     public String logout() {
-        return "redirect:/login"; // redireciona para página de login
+        return "redirect:/login";
     }
 }

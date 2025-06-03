@@ -37,9 +37,7 @@ public class Cronograma {
             inverseJoinColumns = @JoinColumn(name = "id_terreno"))
     private Set<Terreno> terrenos = new LinkedHashSet<>();
 
-    public Integer getId() {
-        return id;
-    }
+    public Integer getId() { return id; }
 
     public void setId(Integer id) {
         this.id = id;

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalhes do Cronograma</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4faf4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            flex: 1;
+            padding: 20px;
+        }
+        .back-button {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #2d8659;
+            font-size: 18px;
+        }
+        .back-button i {
+            margin-right: 8px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 32px;
+            color: #2d8659;
+        }
+        .card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            max-width: 90%;
+            margin: 0 auto;
+        }
+        .detail-item {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .detail-item i {
+            margin-right: 10px;
+            color: #2d8659;
+        }
+        .footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 10px;
+            background-color: #f4faf4;
+            font-size: 14px;
+            color: #777;
+        }
+        .label-bold {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="/lista_cronogramas" class="back-button">
+        <i class="bi bi-arrow-left"></i> Voltar
+    </a>
+
+    <div class="header">
+        <h1>
+            <i class="bi bi-journal-text"></i> Detalhes do Cronograma
+        </h1>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Hortícolas:</strong> <span th:text="${cronograma.tipoHorticolas}">Alface, Cenoura</span></p>
+            <p><strong>Data de Início:</strong> <span th:text="${cronograma.dtInicioPreparoTerreno}">2025-05-01</span></p>
+            <p><strong>Preparo:</strong> <span th:text="${cronograma.processoDePreparo}">Aragem profunda...</span></p>
+            <p><strong>Plantio:</strong> <span th:text="${cronograma.processoDePlantio}">Plantio manual...</span></p>
+            <p><strong>Gestor Responsável:</strong> <span th:text="${cronograma.idGestor.nome}">Daniel</span></p>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    © 2025 Sistema de Gestão de Produção de Produtos Hortícolas. Todos os direitos reservados.
+</div>
+
+</body>
+</html>
