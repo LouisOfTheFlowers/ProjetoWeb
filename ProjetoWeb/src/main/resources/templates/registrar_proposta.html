@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registar Proposta de Plantio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f4faf2;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #2e7d32;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .back-link i {
+            font-size: 1.5rem;
+        }
+
+        .back-link span {
+            margin-left: 10px;
+        }
+
+        .title-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title-section h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2e7d32;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input[type="text"], select {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button[type="submit"] {
+            margin-top: 20px;
+            background-color: #43a047;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 10px;
+            background-color: transparent;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a href="/agricultor/gestao-propostas" class="back-link">
+        <i class="bi bi-arrow-left"></i>
+        <span>Voltar</span>
+    </a>
+
+    <div class="title-section">
+        <h2><i class="bi bi-seedling"></i> Registar Proposta de Plantio</h2>
+    </div>
+
+    <form th:action="@{/agricultor/propostas/novo}" method="post" th:object="${proposta}">
+        <input type="text" th:field="*{horticolas}" placeholder="Hortícolas a Plantar">
+
+        <input type="text" th:field="*{alturaDoAno}" placeholder="Altura do Ano (ex: Primavera)">
+
+        <select th:field="*{idTerreno}">
+            <option value="" disabled selected>Selecionar Terreno</option>
+            <option th:each="terreno : ${terrenos}"
+                    th:value="${terreno.id}"
+                    th:text="'Terreno #' + ${terreno.id}"></option>
+        </select>
+
+        <select th:field="*{idAgricultor}">
+            <option value="" disabled selected>Selecionar Agricultor</option>
+            <option th:each="agricultor : ${agricultores}"
+                    th:value="${agricultor.id}"
+                    th:text="${agricultor.nome}"></option>
+        </select>
+
+        <select th:field="*{idGestor}">
+            <option value="" disabled selected>Selecionar Gestor de Produção</option>
+            <option th:each="gestor : ${gestores}"
+                    th:value="${gestor.id}"
+                    th:text="${gestor.nome}"></option>
+        </select>
+
+
+        <button type="submit">
+            <i class="bi bi-check2-circle"></i> Registar Proposta
+        </button>
+    </form>
+</div>
+<script th:inline="javascript">
+
+    let erroPopup =  null;
+    if (erroPopup !== null) {
+        alert(erroPopup);
+    }
+
+
+    let sucessoPopup =  null;
+    if (sucessoPopup !== null) {
+        alert(sucessoPopup);
+    }
+    /*]]>*/
+</script>
+
+
+
+
+<footer>
+    © 2025 Sistema de Gestão de Produção de Produtos Hortícolas. Todos os direitos reservados.
+</footer>
+
+</body>
+</html>
