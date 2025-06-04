@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registar Terreno</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f5fcf5;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a.voltar {
+            text-decoration: none;
+            color: #2e7d32;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            margin: 20px;
+        }
+
+        a.voltar i {
+            font-size: 1.5rem;
+            margin-right: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 30px;
+        }
+
+        h1 span {
+            font-size: 32px;
+        }
+
+        form {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <a th:href="@{/agricultor/gestao-terrenos}" class="voltar">
+        <i class="bi bi-arrow-left"></i> Voltar
+    </a>
+</div>
+
+<h1>
+    <span>📍</span> Registo de Terreno
+</h1>
+
+<form th:action="@{/agricultor/terrenos/novo}" th:object="${terreno}" method="post">
+    <input type="text" th:field="*{area}" placeholder="Área do Terreno">
+    <input type="text" th:field="*{coordenadas}" placeholder="Coordenadas (ex: 40.123,-8.456)">
+
+    <select th:field="*{idAgricultor}">
+        <option value="" disabled selected>Selecionar Agricultor</option>
+        <option th:each="agricultor : ${agricultores}" th:value="${agricultor.id}" th:text="${agricultor.nome}"></option>
+    </select>
+
+    <div style="text-align: center;">
+        <button type="submit">
+            ➕ Registar
+        </button>
+    </div>
+</form>
+
+<footer>
+    © 2025 Sistema de Gestão de Produção de Produtos Hortícolas. Todos os direitos reservados.
+</footer>
+
+</body>
+</html>
