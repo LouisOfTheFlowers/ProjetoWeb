@@ -43,11 +43,4 @@ public class LoginWebController {
         model.addAttribute("erro", "Acesso permitido apenas a Agricultores.");
         return "login";
     }
-
-
-    // Redireciona para a página de recuperação de password
-    @GetMapping("/esqueceu-password")
-    public String redirecionarParaPassword() {
-        return "esqueceu_password";
-    }
 }
